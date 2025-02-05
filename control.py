@@ -2,14 +2,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetItem,QFileDialog
 from PyQt5.QtGui import QPixmap
-import SistemaVentas.sistema_venta as sistema_venta
+import sistema_venta as sistema_venta
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 import pymysql
 import os
 
 def conexion():
-
     conec = pymysql.connect(host="localhost", user = "root", password= "123456789",
                             database = "bd_tienda_tecnologia")
     return conec
