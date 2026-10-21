@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Configuración local con credenciales
+config.ini
+
+# Registro de errores de la aplicación
+*.log
+
+# Ejecutable generado con PyInstaller
+build/
+dist/
