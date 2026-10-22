@@ -24,17 +24,18 @@ CREATE TABLE usuario (
     nombre VARCHAR(100) NOT NULL,
     clave VARCHAR(255) NOT NULL,
     rol VARCHAR(10) NOT NULL CHECK (rol IN ('ADMIN', 'VENDEDOR')),
-    activo BOOLEAN NOT NULL DEFAULT TRUE
+    activo BOOLEAN NOT NULL DEFAULT TRUE,
+    debe_cambiar_clave BOOLEAN NOT NULL DEFAULT FALSE -- CONTRASEÑA TEMPORAL: SE CAMBIA AL INGRESAR
 );
-INSERT INTO usuario (usuario, nombre, clave, rol) VALUES
-('admin', 'Administrador', 'pbkdf2_sha256$200000$578f65022f5a71c3091307b9c7dc09f8$716ada68247917e58faea5d1e2dd80c47d439279703d4bbdd2c5111cad6991f0', 'ADMIN');
+INSERT INTO usuario (usuario, nombre, clave, rol, debe_cambiar_clave) VALUES
+('admin', 'Administrador', 'pbkdf2_sha256$200000$578f65022f5a71c3091307b9c7dc09f8$716ada68247917e58faea5d1e2dd80c47d439279703d4bbdd2c5111cad6991f0', 'ADMIN', TRUE);
 
 -- CABECERA DE VENTA
 CREATE TABLE venta (
     num_venta INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
     forma_pago VARCHAR(10) NOT NULL,
-    cod_cliente INT NOT NULL,
+    cod_cliente INT NULL, -- NULL = CLIENTE VARIOS (VENTA SIN CLIENTE REGISTRADO)
     total DECIMAL(10,2) NOT NULL,
     cod_usuario INT NULL,
     estado VARCHAR(10) NOT NULL DEFAULT 'REGISTRADA' CHECK (estado IN ('REGISTRADA', 'ANULADA')),
