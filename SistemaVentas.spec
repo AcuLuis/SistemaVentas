@@ -4,7 +4,7 @@
 
 a = Analysis(
     ["control.py"],
-    datas=[("iconos", "iconos"), ("inicio_logo.jpg", ".")],
+    datas=[("iconos", "iconos"), ("fuentes", "fuentes"), ("inicio_logo.jpg", ".")],
     excludes=["tkinter"],
 )
 pyz = PYZ(a.pure)
@@ -15,5 +15,6 @@ exe = EXE(
     a.datas,
     name="SistemaVentas",
     console=False, # APLICACION DE VENTANAS: SIN CONSOLA NEGRA
+    icon="iconos/app.ico",
     upx=False,
 )
